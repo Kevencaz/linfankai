@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小升初简历 - 获奖情况展示</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .resume-container {
+            width: 100%;
+            max-width: 1200px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 25px 60px rgba(0, 30, 90, 0.2);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        /* 头部样式 */
+        header {
+            background: linear-gradient(120deg, #1a56db 0%, #0e2b6d 100%);
+            color: white;
+            padding: 40px 30px 60px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .title-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+            text-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
+        }
+        
+        .subtitle {
+            font-size: 1.4rem;
+            font-weight: 300;
+            opacity: 0.92;
+            max-width: 700px;
+            margin: 0 auto 15px;
+            line-height: 1.6;
+        }
+        
+        .decoration {
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 8px 25px rgba(0, 0, 100, 0.2);
+            z-index: 10;
+        }
+        
+        .decoration i {
+            font-size: 32px;
+            color: #1a56db;
+        }
+        
+        /* 内容区域 */
+        .content {
+            padding: 60px 30px 30px;
+            position: relative;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #1a3a7c;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -18px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #1a56db, #0e2b6d);
+            border-radius: 3px;
+        }
+        
+        /* 四类卡片布局 */
+        .awards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .award-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #edf2f7;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .award-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(26, 86, 219, 0.18);
+        }
+        
+        .card-header {
+            padding: 22px 20px;
+            color: white;
+            display: flex;
+            align-items: center;
+            min-height: 80px;
+        }
+        
+        .card-header i {
+            font-size: 28px;
+            margin-right: 15px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .card-header h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        
+        .card-body {
+            padding: 20px;
+            flex-grow: 1;
+        }
+        
+        .award-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px dashed #e2e8f0;
+            min-height: 44px;
+        }
+        
+        .award-item:last-child {
+            border-bottom: none;
+        }
+        
+        .award-name {
+            font-weight: 500;
+            color: #2d3748;
+            font-size: 0.95rem;
+            line-height: 1.4;
+            flex: 1;
+            padding-right: 10px;
+        }
+        
+        .award-date {
+            color: #718096;
+            font-size: 0.9rem;
+            min-width: 70px;
+            text-align: right;
+        }
+        
+        .highlight {
+            color: #d32a22;
+            font-weight: 700;
+            position: relative;
+        }
+        
+        .highlight:before {
+            content: "★";
+            margin-right: 4px;
+            font-size: 0.9em;
+        }
+        
+        .gold {
+            color: #c9a227;
+            font-weight: 700;
+        }
+        
+        .gold:before {
+            content: "★";
+            margin-right: 4px;
+            font-size: 0.9em;
+        }
+        
+        /* 底部总结区域 */
+        .summary-section {
+            background: linear-gradient(120deg, #f8fafc 0%, #f1f5f9 100%);
+            border-radius: 16px;
+            padding: 30px;
+            margin-top: 30px;
+            border-left: 5px solid #1a56db;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .summary-title {
+            font-size: 1.8rem;
+            color: #1a3a7c;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .summary-title i {
+            margin-right: 12px;
+            color: #1a56db;
+        }
+        
+        .summary-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .summary-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+            border-top: 4px solid;
+        }
+        
+        .summary-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            color: #1a3a7c;
+        }
+        
+        .summary-card h4 i {
+            margin-right: 10px;
+            font-size: 1.4rem;
+        }
+        
+        .summary-card ul {
+            padding-left: 22px;
+        }
+        
+        .summary-card li {
+            margin-bottom: 12px;
+            line-height: 1.5;
+            font-size: 1.05rem;
+        }
+        
+        /* 页脚 */
+        footer {
+            background: #1a3a7c;
+            color: rgba(255, 255, 255, 0.85);
+            text-align: center;
+            padding: 25px;
+            font-size: 1rem;
+            margin-top: 30px;
+        }
+        
+        /* 卡片颜色 */
+        .card-1 .card-header { background: linear-gradient(120deg, #4c6ef5, #3b5bdb); }
+        .card-2 .card-header { background: linear-gradient(120deg, #fd7e14, #e8590c); }
+        .card-3 .card-header { background: linear-gradient(120deg, #e64980, #d6336c); }
+        .card-4 .card-header { background: linear-gradient(120deg, #20c997, #099268); }
+        
+        .summary-card:nth-child(1) { border-top-color: #4c6ef5; }
+        .summary-card:nth-child(2) { border-top-color: #fd7e14; }
+        .summary-card:nth-child(3) { border-top-color: #e64980; }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            header {
+                padding: 30px 20px 50px;
+            }
+            
+            .title {
+                font-size: 2.2rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .content {
+                padding: 50px 20px 20px;
+            }
+            
+            .section-title {
+                font-size: 1.9rem;
+            }
+        }
+        
+        .watermark {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            font-size: 0.9rem;
+            color: rgba(26, 58, 124, 0.2);
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="resume-container">
+        <header>
+            <div class="title-container">
+                <h1 class="title">小升初个人简历</h1>
+                <p class="subtitle">全面展示学科素养、特长发展与综合能力，记录小学阶段成长足迹</p>
+            </div>
+            <div class="decoration">
+                <i class="fas fa-medal"></i>
+            </div>
+        </header>
+        
+        <div class="content">
+            <h2 class="section-title">获奖情况展示</h2>
+            
+            <div class="awards-grid">
+                <!-- 学科竞赛 -->
+                <div class="award-card card-1">
+                    <div class="card-header">
+                        <i class="fas fa-book-open"></i>
+                        <h3>学科竞赛</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="award-item">
+                            <span class="award-name">语文之星</span>
+                            <span class="award-date">2020.01</span>
+                        </div>
+                        <div class="award-item">
+                            <span class="award-name">诗词大会飞花令三等奖</span>
+                            <span class="award-date">2022.06</span>
+                        </div>
+                        <div class="award-item">
+                            <span class="award-name">作文大赛三等奖</span>
+                            <span class="award-date">2022.06</span>
+                        </div>
+                        <div class="award-item">
+                            <span class="award-name">英语故事一等奖</span>
+                            <span class="award-date">2020.12</span>
+                        </div>
+                        <div class="award-item">
+                            <span class="award-name">英语读写一等奖</span>
+                            <span class="award-date">2020.12</span>
+                        </div>
+                        <div class="award-item">
+                            <span class="award-name">英语讲解员二等奖</span>
+                            <span class="award-date">2024.05</span>
+                        </div>
+                        <div class="award-item">
+                            <span class="award-name">数学周三等奖</span>
+                            <span class="award-date">2023.03</span>
+                        </div>
+                        <div class="award-item">
+                            <span class="award-name highlight">跨学科综合素养二等奖</span>
+                            <span class="award-date">2025.03</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 书画特长 -->
+                <div class="award-card card-2">
+                    <div class="card-header">
+                        <i class="fas fa-paint-brush"></i>
+                        <h3>书画特长</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="award-item">
+                            <span class="award-name gold">广东省书画活动金奖</span>
+                            <span class="award-date">2020.12</span>
+                        </div>
+                        <div class="award-item">
+                            <span class="award-name">福田区书画大赛优秀奖</span>
+                            <span class="award-date">2021.12</span>
+                        </div>
+                        <div class="award-item">
+                            <span class="award-name">书法二等奖</span>
+                            <span class="award-date">2022.06</span>
+                        </div>
+                        <div class="award-item">
+                            <span class="award-name">书写小达人奖</span>
+                            <span class="award-date">2023.05</span>
+                        </div>
+                        <div class="award-item">
+                            <span class="award-name">现场书法比赛二等奖</span>
+                            <span class="award-date">2023.12</span>
+                        </div>
+                        <div class="award-item">
+                            <span class="award-name">广东省书写小达人</span>
+                            <span class="award-date">2024.06</span>
+                        </div>
+                        <div class="award-item">
+                            <span class="award-name gold">书法繁星杯金奖</span>
+                            <span class="award-date">2024.08</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 综合荣誉 -->
+                <div class="award-card card-3">
+                    <div class="card-header">
+                        <i class="fas fa-star"></i>
+                        <h3>综合荣誉</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="award-item">
+                            <span class="award-name">升旗课程优秀学生</span>
+                            <span class="award-date">2021.01</span>
+                        </div>
+                        <div class="award-item">
+                            <span class="award-name">明德之星</span>
+                            <span class="award-date">2021.06</span>
+                        </div>
+                        <div class="award-item">
+                            <span class="award-name">三好学生</span>
+                            <span class="award-date">2022.01</span>
+                        </div>
+                        <div class="award-item">
+                            <span class="award-name highlight">福田区红领巾二星章</span>
+                            <span class="award-date">2023.06</span>
+                        </div>
+                        <div class="award-item">
+                            <span class="award-name">优秀班干部 (7次)</span>
+                            <span class="award-date">2023-2025</span>
+                        </div>
+                        <div class="award-item">
+                            <span class="award-name">优秀学生干部</span>
+                            <span class="award-date">2024.01</span>
+                        </div>
+                        <div class="award-item">
+                            <span class="award-name highlight">未来之星</span>
+                            <span class="award-date">2025.04</span>
+                        </div>
+                        <div class="award-item">
+                            <span class="award-name">学习优秀奖</span>
+                            <span class="award-date">2025.07</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 科技与体育（合并） -->
+                <div class="award-card card-4">
+                    <div class="card-header">
+                        <i class="fas fa-rocket"></i>
+                        <h3>科技与体育</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="award-item">
+                            <span class="award-name">科技节二等奖</span>
+                            <span class="award-date">2020.10</span>
+                        </div>
+                        <div class="award-item">
+                            <span class="award-name">孔明锁拆解三等奖</span>
+                            <span class="award-date">2023.05</span>
+                        </div>
+                        <div class="award-item">
+                            <span class="award-name highlight">小课题研究挑战赛一等奖</span>
+                            <span class="award-date">2024.03</span>
+                        </div>
+                        <div class="award-item">
+                            <span class="award-name">科技节三等奖</span>
+                            <span class="award-date">2024.03</span>
+                        </div>
+                        <div class="award-item">
+                            <span class="award-name">男子接力赛第六名</span>
+                            <span class="award-date">2023.10</span>
+                        </div>
+                        <div class="award-item">
+                            <span class="award-name">男子接力赛第六名</span>
+                            <span class="award-date">2024.10</span>
+                        </div>
+                        <div class="award-item">
+                            <span class="award-name">人文季中华文化节二等奖</span>
+                            <span class="award-date">2023.06</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="summary-section">
+                <h3 class="summary-title"><i class="fas fa-lightbulb"></i> 获奖亮点总结</h3>
+                <div class="summary-content">
+                    <div class="summary-card">
+                        <h4><i class="fas fa-palette"></i> 书画特长突出</h4>
+                        <ul>
+                            <li>连续获得<span class="gold">省级书画金奖</span>（2020、2024）</li>
+                            <li>3次荣获"广东省书写小达人"称号</li>
+                            <li>累计获得7项书法绘画类奖项</li>
+                            <li>书法作品多次在校级、区级比赛中获奖</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="summary-card">
+                        <h4><i class="fas fa-brain"></i> 学术全面发展</h4>
+                        <ul>
+                            <li>覆盖<span class="highlight">语文、数学、英语</span>三大学科奖项</li>
+                            <li>科技创新类课题获<span class="highlight">最高奖项</span></li>
+                            <li>跨学科综合素养比赛二等奖</li>
+                            <li>持续5年的学科竞赛获奖记录</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="summary-card">
+                        <h4><i class="fas fa-trophy"></i> 综合能力卓越</h4>
+                        <ul>
+                            <li>7次获评"优秀班干部"</li>
+                            <li>荣获区级<span class="highlight">红领巾二星章</span></li>
+                            <li>获得"未来之星"、"三好学生"等荣誉</li>
+                            <li>贯穿小学全阶段的荣誉记录</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="watermark">小升初简历 - 奖项展示</div>
+        </div>
+        
+        <footer>
+            <p>© 2025 小升初个人简历 | 设计展示页面</p>
+        </footer>
+    </div>
+</body>
+</html>
