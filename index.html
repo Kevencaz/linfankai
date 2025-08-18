@@ -34,71 +34,13 @@
             position: relative;
         }
         
-        /* 头部样式 */
+        /* 头部样式 - 简化版 */
         header {
             background: linear-gradient(120deg, #1a56db 0%, #0e2b6d 100%);
             color: white;
-            padding: 40px 30px 70px;
+            padding: 40px 30px;
             text-align: center;
             position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        
-        .avatar-container {
-            position: relative;
-            margin-bottom: 20px;
-            z-index: 10;
-        }
-        
-        .avatar {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            border: 5px solid white;
-            background: #e0e7ff;
-            box-shadow: 0 8px 25px rgba(0, 0, 100, 0.2);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .avatar:hover {
-            transform: scale(1.05);
-            box-shadow: 0 12px 30px rgba(0, 0, 100, 0.3);
-        }
-        
-        .avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: none;
-        }
-        
-        .avatar-placeholder {
-            font-size: 60px;
-            color: #a3a3ff;
-        }
-        
-        .avatar-upload-text {
-            position: absolute;
-            bottom: 10px;
-            background: rgba(0, 0, 0, 0.6);
-            color: white;
-            width: 100%;
-            padding: 5px;
-            font-size: 14px;
-            text-align: center;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-        
-        .avatar:hover .avatar-upload-text {
-            opacity: 1;
         }
         
         .title-container {
@@ -111,18 +53,8 @@
         .title {
             font-size: 3.2rem;
             font-weight: 700;
-            margin-bottom: 10px;
             letter-spacing: 1px;
             text-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
-        }
-        
-        .subtitle {
-            font-size: 1.8rem;
-            font-weight: 300;
-            opacity: 0.92;
-            max-width: 700px;
-            margin: 0 auto 15px;
-            line-height: 1.6;
         }
         
         .decoration {
@@ -166,43 +98,83 @@
             color: #1a56db;
         }
         
-        /* 基本信息部分 */
-        .basic-info {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+        /* 基本信息部分 - 紧凑布局 */
+        .basic-info-section {
+            display: flex;
+            gap: 40px;
             margin-bottom: 50px;
-        }
-        
-        .info-card {
             background: #f8faff;
             border-radius: 16px;
-            padding: 25px;
+            padding: 30px;
             box-shadow: 0 8px 20px rgba(26, 86, 219, 0.08);
-            border-left: 4px solid #1a56db;
         }
         
-        .info-grid {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
+        .avatar-info {
+            flex: 0 0 180px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid white;
+            background: #e0e7ff;
+            box-shadow: 0 8px 25px rgba(0, 0, 100, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .info-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
             gap: 15px;
-            margin-top: 20px;
+        }
+        
+        .info-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .info-item {
+            min-width: 180px;
         }
         
         .info-label {
             font-weight: 600;
             color: #1a3a7c;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
         }
         
         .info-value {
             color: #333;
+            font-size: 1.2rem;
+            padding-left: 10px;
+            border-left: 3px solid #1a56db;
+            min-height: 30px;
+            display: flex;
+            align-items: center;
         }
         
         .interest-list {
             display: flex;
             flex-wrap: wrap;
             gap: 12px;
-            margin-top: 20px;
+            margin-top: 5px;
         }
         
         .interest-tag {
@@ -214,7 +186,7 @@
             font-weight: 500;
         }
         
-        /* 学习成绩部分 */
+        /* 学习成绩部分 - 等高卡片 */
         .grades-section {
             background: linear-gradient(120deg, #f8fafc 0%, #f1f5f9 100%);
             border-radius: 16px;
@@ -222,50 +194,72 @@
             margin-bottom: 50px;
         }
         
-        .grade-table {
-            width: 100%;
-            border-collapse: collapse;
+        .grade-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
             margin-top: 20px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .grade-card {
+            background: white;
             border-radius: 12px;
-            overflow: hidden;
-        }
-        
-        .grade-table th {
-            background: #1a56db;
-            color: white;
-            padding: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 20px;
             text-align: center;
-            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%; /* 确保卡片等高 */
         }
         
-        .grade-table td {
-            padding: 15px;
-            text-align: center;
-            border-bottom: 1px solid #eef2f7;
+        .grade-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(26, 86, 219, 0.15);
         }
         
-        .grade-table tr:nth-child(even) {
-            background: #f8faff;
-        }
-        
-        .grade-table tr:last-child td {
-            border-bottom: none;
-        }
-        
-        .grade-table .subject-cell {
-            font-weight: 600;
+        .subject-name {
+            font-size: 1.3rem;
             color: #1a3a7c;
-            background: #edf3ff;
+            font-weight: 600;
+            margin-bottom: 15px;
         }
         
-        .grade-a {
-            color: #28a745;
+        .grade-years {
+            display: flex;
+            justify-content: space-around;
+            gap: 10px;
+            flex: 1; /* 使这部分填充剩余空间 */
+        }
+        
+        .grade-year {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .year-label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        
+        .grade-value {
+            font-size: 1.8rem;
             font-weight: 700;
-            font-size: 1.2rem;
+            color: #28a745;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
-        /* 奖状证书部分 - 四个类目一行展示 */
+        .grade-value::after {
+            content: "A";
+            font-size: 1.8rem;
+        }
+        
+        /* 奖状证书部分 */
         .awards-row {
             display: flex;
             flex-wrap: wrap;
@@ -451,10 +445,6 @@
                 font-size: 2.5rem;
             }
             
-            .subtitle {
-                font-size: 1.5rem;
-            }
-            
             .avatar {
                 width: 120px;
                 height: 120px;
@@ -464,27 +454,51 @@
                 min-width: 100%;
                 max-width: 100%;
             }
+            
+            .basic-info-section {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 20px;
+            }
+            
+            .info-value {
+                border-left: none;
+                padding-left: 0;
+                justify-content: center;
+            }
+            
+            .info-row {
+                justify-content: center;
+                gap: 15px;
+            }
+            
+            .interest-list {
+                justify-content: center;
+            }
+            
+            .grade-cards {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .grade-cards {
+                grid-template-columns: 1fr;
+            }
         }
         
         @media (max-width: 600px) {
             header {
-                padding: 30px 20px 60px;
+                padding: 30px 20px;
             }
             
             .title {
                 font-size: 2.2rem;
             }
             
-            .subtitle {
-                font-size: 1.3rem;
-            }
-            
             .section-title {
                 font-size: 1.7rem;
-            }
-            
-            .basic-info {
-                grid-template-columns: 1fr;
             }
             
             .comments-section {
@@ -499,6 +513,10 @@
                 width: 100px;
                 height: 100px;
             }
+            
+            .info-item {
+                min-width: 140px;
+            }
         }
         
         .watermark {
@@ -509,145 +527,15 @@
             color: rgba(26, 58, 124, 0.2);
             z-index: 1;
         }
-        
-        /* 模态框样式 */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            overflow: auto;
-        }
-        
-        .modal-content {
-            position: relative;
-            background-color: #fefefe;
-            margin: 5% auto;
-            padding: 20px;
-            border-radius: 15px;
-            width: 90%;
-            max-width: 800px;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
-        }
-        
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .close {
-            color: #aaa;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-        }
-        
-        .crop-area {
-            width: 100%;
-            height: 400px;
-            background: #f5f5f5;
-            margin: 15px 0;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        #crop-image {
-            max-width: 100%;
-            max-height: 100%;
-        }
-        
-        .modal-buttons {
-            display: flex;
-            justify-content: flex-end;
-            gap: 10px;
-            margin-top: 20px;
-        }
-        
-        .modal-btn {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: 500;
-            transition: all 0.3s;
-        }
-        
-        .cancel-btn {
-            background: #f1f1f1;
-            color: #333;
-        }
-        
-        .cancel-btn:hover {
-            background: #e0e0e0;
-        }
-        
-        .crop-btn {
-            background: #1a56db;
-            color: white;
-        }
-        
-        .crop-btn:hover {
-            background: #0e2b6d;
-        }
-        
-        .file-input-container {
-            position: relative;
-            margin-top: 15px;
-        }
-        
-        .file-input-label {
-            display: inline-block;
-            padding: 10px 15px;
-            background: #1a56db;
-            color: white;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        
-        .file-input-label:hover {
-            background: #0e2b6d;
-        }
-        
-        #file-input {
-            display: none;
-        }
     </style>
 </head>
 <body>
     <div class="resume-container">
+        <!-- 简化头部 -->
         <header>
-            <div class="avatar-container">
-                <div class="avatar" id="avatar">
-                    <div class="avatar-placeholder">
-                        <i class="fas fa-user"></i>
-                    </div>
-                    <img id="avatar-img" src="" alt="头像">
-                    <div class="avatar-upload-text">点击上传照片</div>
-                </div>
-            </div>
-            
             <div class="title-container">
-                <h1 class="title">林钒恺</h1>
-                <p class="subtitle">升学简历</p>
+                <h1 class="title">升学简历</h1>
             </div>
-            
             <div class="decoration">
                 <i class="fas fa-graduation-cap"></i>
             </div>
@@ -657,40 +545,63 @@
             <!-- 基本信息部分 -->
             <div class="section">
                 <h2 class="section-title"><i class="fas fa-user-graduate"></i> 基本信息</h2>
-                <div class="basic-info">
-                    <div class="info-card">
-                        <h3><i class="fas fa-id-card"></i> 个人信息</h3>
-                        <div class="info-grid">
-                            <div class="info-label">姓名：</div>
-                            <div class="info-value">林钒恺</div>
-                            <div class="info-label">性别：</div>
-                            <div class="info-value">男</div>
-                            <div class="info-label">生日：</div>
-                            <div class="info-value">2013年8月19日</div>
-                            <div class="info-label">民族：</div>
-                            <div class="info-value">汉族</div>
-                            <div class="info-label">籍贯：</div>
-                            <div class="info-value">广东省深圳市</div>
+                <div class="basic-info-section">
+                    <div class="avatar-info">
+                        <div class="avatar">
+                            <img src="头像.jpg" alt="林钒恺头像">
                         </div>
                     </div>
                     
-                    <div class="info-card">
-                        <h3><i class="fas fa-phone-alt"></i> 联系方式</h3>
-                        <div class="info-grid">
-                            <div class="info-label">电话：</div>
-                            <div class="info-value">13543349222</div>
-                            <div class="info-label">身高：</div>
-                            <div class="info-value">155cm</div>
-                            <div class="info-label">体重：</div>
-                            <div class="info-value">35kg</div>
+                    <div class="info-content">
+                        <!-- 第一行信息 -->
+                        <div class="info-row">
+                            <div class="info-item">
+                                <div class="info-label">姓名</div>
+                                <div class="info-value">林钒恺</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">性别</div>
+                                <div class="info-value">男</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">年龄</div>
+                                <div class="info-value">12岁</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">民族</div>
+                                <div class="info-value">汉族</div>
+                            </div>
                         </div>
                         
-                        <h3 style="margin-top: 25px;"><i class="fas fa-heart"></i> 兴趣特长</h3>
-                        <div class="interest-list">
-                            <span class="interest-tag">羽毛球</span>
-                            <span class="interest-tag">篮球</span>
-                            <span class="interest-tag">跳绳</span>
-                            <span class="interest-tag">书法</span>
+                        <!-- 第二行信息 -->
+                        <div class="info-row">
+                            <div class="info-item">
+                                <div class="info-label">籍贯</div>
+                                <div class="info-value">广东深圳</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">身高</div>
+                                <div class="info-value">155cm</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">体重</div>
+                                <div class="info-value">35kg</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">电话</div>
+                                <div class="info-value">13543349222</div>
+                            </div>
+                        </div>
+                        
+                        <!-- 兴趣特长 -->
+                        <div class="info-item">
+                            <div class="info-label">兴趣特长</div>
+                            <div class="interest-list">
+                                <span class="interest-tag">羽毛球</span>
+                                <span class="interest-tag">篮球</span>
+                                <span class="interest-tag">跳绳</span>
+                                <span class="interest-tag">书法</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -700,58 +611,121 @@
             <div class="section">
                 <h2 class="section-title"><i class="fas fa-book-open"></i> 学习成绩</h2>
                 <div class="grades-section">
-                    <table class="grade-table">
-                        <thead>
-                            <tr>
-                                <th>科目</th>
-                                <th>四年级</th>
-                                <th>五年级</th>
-                                <th>六年级</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="subject-cell">语文</td>
-                                <td><span class="grade-a">A</span></td>
-                                <td><span class="grade-a">A</span></td>
-                                <td><span class="grade-a">A</span></td>
-                            </tr>
-                            <tr>
-                                <td class="subject-cell">数学</td>
-                                <td><span class="grade-a">A</span></td>
-                                <td><span class="grade-a">A</span></td>
-                                <td><span class="grade-a">A</span></td>
-                            </tr>
-                            <tr>
-                                <td class="subject-cell">英语</td>
-                                <td><span class="grade-a">A</span></td>
-                                <td><span class="grade-a">A</span></td>
-                                <td><span class="grade-a">A</span></td>
-                            </tr>
-                            <tr>
-                                <td class="subject-cell">科学</td>
-                                <td><span class="grade-a">A</span></td>
-                                <td><span class="grade-a">A</span></td>
-                                <td><span class="grade-a">A</span></td>
-                            </tr>
-                            <tr>
-                                <td class="subject-cell">道法</td>
-                                <td><span class="grade-a">A</span></td>
-                                <td><span class="grade-a">A</span></td>
-                                <td><span class="grade-a">A</span></td>
-                            </tr>
-                            <tr>
-                                <td class="subject-cell">体育</td>
-                                <td><span class="grade-a">A</span></td>
-                                <td><span class="grade-a">A</span></td>
-                                <td><span class="grade-a">A</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div class="grade-cards">
+                        <!-- 语文、数学、英语 -->
+                        <div class="grade-card">
+                            <div class="subject-name">语文</div>
+                            <div class="grade-years">
+                                <div class="grade-year">
+                                    <div class="year-label">四年级</div>
+                                    <div class="grade-value"></div>
+                                </div>
+                                <div class="grade-year">
+                                    <div class="year-label">五年级</div>
+                                    <div class="grade-value"></div>
+                                </div>
+                                <div class="grade-year">
+                                    <div class="year-label">六年级</div>
+                                    <div class="grade-value"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="grade-card">
+                            <div class="subject-name">数学</div>
+                            <div class="grade-years">
+                                <div class="grade-year">
+                                    <div class="year-label">四年级</div>
+                                    <div class="grade-value"></div>
+                                </div>
+                                <div class="grade-year">
+                                    <div class="year-label">五年级</div>
+                                    <div class="grade-value"></div>
+                                </div>
+                                <div class="grade-year">
+                                    <div class="year-label">六年级</div>
+                                    <div class="grade-value"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="grade-card">
+                            <div class="subject-name">英语</div>
+                            <div class="grade-years">
+                                <div class="grade-year">
+                                    <div class="year-label">四年级</div>
+                                    <div class="grade-value"></div>
+                                </div>
+                                <div class="grade-year">
+                                    <div class="year-label">五年级</div>
+                                    <div class="grade-value"></div>
+                                </div>
+                                <div class="grade-year">
+                                    <div class="year-label">六年级</div>
+                                    <div class="grade-value"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 科学、道法、体育（高度与英文对齐） -->
+                        <div class="grade-card">
+                            <div class="subject-name">科学</div>
+                            <div class="grade-years">
+                                <div class="grade-year">
+                                    <div class="year-label">四年级</div>
+                                    <div class="grade-value"></div>
+                                </div>
+                                <div class="grade-year">
+                                    <div class="year-label">五年级</div>
+                                    <div class="grade-value"></div>
+                                </div>
+                                <div class="grade-year">
+                                    <div class="year-label">六年级</div>
+                                    <div class="grade-value"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="grade-card">
+                            <div class="subject-name">道法</div>
+                            <div class="grade-years">
+                                <div class="grade-year">
+                                    <div class="year-label">四年级</div>
+                                    <div class="grade-value"></div>
+                                </div>
+                                <div class="grade-year">
+                                    <div class="year-label">五年级</div>
+                                    <div class="grade-value"></div>
+                                </div>
+                                <div class="grade-year">
+                                    <div class="year-label">六年级</div>
+                                    <div class="grade-value"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="grade-card">
+                            <div class="subject-name">体育</div>
+                            <div class="grade-years">
+                                <div class="grade-year">
+                                    <div class="year-label">四年级</div>
+                                    <div class="grade-value"></div>
+                                </div>
+                                <div class="grade-year">
+                                    <div class="year-label">五年级</div>
+                                    <div class="grade-value"></div>
+                                </div>
+                                <div class="grade-year">
+                                    <div class="year-label">六年级</div>
+                                    <div class="grade-value"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             
-            <!-- 奖状证书部分 - 四个类目一行展示 -->
+            <!-- 奖状证书部分 -->
             <div class="section">
                 <h2 class="section-title"><i class="fas fa-trophy"></i> 奖状证书</h2>
                 <div class="awards-row">
@@ -877,7 +851,7 @@
                         </div>
                     </div>
                     
-                    <!-- 科技与体育（合并） -->
+                    <!-- 科技与体育 -->
                     <div class="award-card card-4">
                         <div class="card-header">
                             <i class="fas fa-rocket"></i>
@@ -948,93 +922,5 @@
             <p>© 2025 林钒恺升学简历</p>
         </footer>
     </div>
-    
-    <!-- 头像上传模态框 -->
-    <div id="avatar-modal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>上传头像</h2>
-                <span class="close">&times;</span>
-            </div>
-            <div class="crop-area">
-                <img id="crop-image" src="" alt="裁剪图片">
-            </div>
-            <div class="file-input-container">
-                <label for="file-input" class="file-input-label">
-                    <i class="fas fa-upload"></i> 选择图片
-                </label>
-                <input type="file" id="file-input" accept="image/*">
-            </div>
-            <div class="modal-buttons">
-                <button class="modal-btn cancel-btn">取消</button>
-                <button class="modal-btn crop-btn">确定</button>
-            </div>
-        </div>
-    </div>
-    
-    <script>
-        // 头像上传功能
-        const avatar = document.getElementById('avatar');
-        const avatarImg = document.getElementById('avatar-img');
-        const modal = document.getElementById('avatar-modal');
-        const closeBtn = document.querySelector('.close');
-        const cancelBtn = document.querySelector('.cancel-btn');
-        const cropBtn = document.querySelector('.crop-btn');
-        const fileInput = document.getElementById('file-input');
-        const cropImage = document.getElementById('crop-image');
-        const placeholder = document.querySelector('.avatar-placeholder');
-        
-        // 打开头像上传模态框
-        avatar.addEventListener('click', () => {
-            modal.style.display = 'block';
-        });
-        
-        // 关闭模态框
-        function closeModal() {
-            modal.style.display = 'none';
-            fileInput.value = ''; // 清除文件输入
-        }
-        
-        closeBtn.addEventListener('click', closeModal);
-        cancelBtn.addEventListener('click', closeModal);
-        
-        // 点击模态框外部关闭
-        window.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                closeModal();
-            }
-        });
-        
-        // 处理文件选择
-        fileInput.addEventListener('change', function(e) {
-            if (this.files && this.files[0]) {
-                const reader = new FileReader();
-                
-                reader.onload = function(e) {
-                    cropImage.src = e.target.result;
-                }
-                
-                reader.readAsDataURL(this.files[0]);
-            }
-        });
-        
-        // 确定裁剪按钮
-        cropBtn.addEventListener('click', function() {
-            if (cropImage.src) {
-                avatarImg.src = cropImage.src;
-                avatarImg.style.display = 'block';
-                placeholder.style.display = 'none';
-                closeModal();
-            } else {
-                alert('请先选择一张图片');
-            }
-        });
-        
-        // 模拟裁剪功能（实际项目中应使用cropper.js等库）
-        cropImage.addEventListener('load', function() {
-            // 这里可以添加实际的裁剪功能
-            console.log('图片已加载，可以添加裁剪功能');
-        });
-    </script>
 </body>
 </html>
